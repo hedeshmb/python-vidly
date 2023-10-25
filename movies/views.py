@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Movie
 
 
 def index(request):
-    return HttpResponse("Hellow World")
+    movies = Movie.objects.all()
+    output = ', '.join([movie.title for movie in movies])
+    # Movie.objects.filter(release_year=1200)
+    return HttpResponse(output)
